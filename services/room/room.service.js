@@ -38,7 +38,26 @@ module.exports.joinRoom = async (req, res) => {
   if (room.length === 0) {
     res.status(404).send('Room not found')
   } else {
-    // room.
-    // res.json(response[0]._id)
+    // Check if the user length is equal to 2
+    if (room[0].users.length >= 2) {
+      res.status(403).send('Room is full')
+    } else {
+      const response = await collection.updateOne(
+        { code: req.params.code },
+        { $push: { users: { name: req.body.name } } }
+      )
+      res.json(response)
+    }
+  }
+}
+
+module.exports.deleteRoom = async (req, res) => {
+  const db = require('../../common/db/db').client
+  const collection = db.collection('rooms')
+  const response = await collection.deleteOne({ code: req.params.code })
+  if (response.deletedCount === 0) {
+    res.status(404).send('Room not found')
+  } else {
+    res.json(response)
   }
 }
