@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var healthService = require('../services/health/health.service');
+var challengeService = require('../services/Play/play.service');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
