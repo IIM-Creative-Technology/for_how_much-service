@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var roomRouter = require('./routes/room.route');
 var app = express();
 
 app.use(logger('dev'));
@@ -14,7 +15,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/room', roomRouter);
+
 console.log(process.env.MONGO_URI);
-
-
 module.exports = app;
