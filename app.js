@@ -19,11 +19,6 @@ console.log(process.env.MONGO_URI);
 
 module.exports = app;
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-  }
-});
 
 // Vos routes
 app.use('/', indexRouter);
