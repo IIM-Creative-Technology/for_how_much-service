@@ -8,7 +8,3 @@ const playService = require("../services/play/play.service");
 
 /** health check route */
 router.get('/health', healthService.health)
-
-/** Map Check route */
-router.get('/play', playService.play)
-module.exports = router;
