@@ -7,8 +7,10 @@ The Goal of the game is to have the same number as the opponent; we can select s
 
 ## Requirment :passport_control: 
 - [Node.js](https://nodejs.org/en/download/)
-- [nodemon](https://www.npmjs.com/package/nodemon)
-
+- Nodemon : 
+```bash
+npm install -g nodemon # or using yarn: yarn global add nodemon
+```
 
 ## How to Use
 
