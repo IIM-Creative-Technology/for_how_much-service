@@ -9,6 +9,7 @@ var debug = require('debug')('socket-game:server');
 var http = require('http');
 const { Server } = require("socket.io");
 const cors = require("cors");
+const {play} = require("../services/play/play.service");
 
 
 /**
@@ -46,12 +47,7 @@ const io = require("socket.io")(server, {
 // Evenements socket
 console.log("Socket server started");
 io.on('connection', (socket) => {
-  console.log(`A user connected with socket ${socket.id}`);
-  socket.emit('game', {user: 1, turn: 0})
-
-  socket.on("newTurn", (msg) => {
-    console.log(msg);
-  })
+  play(socket);
 })
 
 /**
