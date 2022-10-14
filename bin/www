@@ -8,7 +8,6 @@ var app = require('../app');
 var debug = require('debug')('socket-game:server');
 var http = require('http');
 const { Server } = require("socket.io");
-const cors = require("cors");
 const {play} = require("../services/play/play.service");
 
 
@@ -19,7 +18,6 @@ const {play} = require("../services/play/play.service");
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-app.use(cors())
 
 
 /**

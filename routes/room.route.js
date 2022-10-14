@@ -23,5 +23,8 @@ router.post('/leave/:code', roomService.leaveRoom)
 /** add challenge */
 router.post('/add/challenge/:code', roomService.addChallenge)
 
+/** check if room have challenge */
+router.get('/check/challenge/:code', roomService.checkChallenge)
+
 module.exports = router
 

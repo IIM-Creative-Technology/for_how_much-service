@@ -99,7 +99,22 @@ module.exports.addChallenge = async (req, res) => {
   // We want to add challenge to the room
   const response = await collection.updateOne(
     { code: req.params.code },
-    { challenges: req.body.challenge }
+    { $set: { challenge: req.body.challenge, userAsk: req.body.userAsk } }
   )
-  res.json(response)
+  res.status(200).json(response)
+}
+
+module.exports.checkChallenge = async (req, res) => {
+  const db = require('../../common/db/db').client
+  const collection = db.collection('rooms')
+  const response = await collection.find({ code: req.params.code }).toArray()
+  if (response.length === 0) {
+    res.status(404).send('Room not found')
+  } else {
+    if (response[0].challenge) {
+      res.status(200).json(response[0].challenge)
+    } else {
+      res.status(200).send('No challenge found')
+    }
+  }
 }
