@@ -71,3 +71,23 @@ module.exports.leaveRoom = async (req, res) => {
   )
   res.json(response)
 }
+
+module.exports.getAllRooms = async (req, res) => {
+  const db = require('../../common/db/db').client
+  const collection = db.collection('rooms')
+  const response = await collection.aggregate([
+    { $project:
+      {
+        _id: 1,
+        code: 1,
+        users: 1,
+
+        usersLength: {$size : { $ifNull: ["$users", []] }}
+      }
+    },
+    {
+      $match: { usersLength: {$lt: 2}}
+    }
+  ]).toArray()
+  res.json(response)
+}
