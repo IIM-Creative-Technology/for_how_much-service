@@ -92,3 +92,14 @@ module.exports.getAllRooms = async (req, res) => {
   ]).toArray()
   res.json(response)
 }
+
+module.exports.addChallenge = async (req, res) => {
+  const db = require('../../common/db/db').client
+  const collection = db.collection('rooms')
+  // We want to add challenge to the room
+  const response = await collection.updateOne(
+    { code: req.params.code },
+    { challenges: req.body.challenge }
+  )
+  res.json(response)
+}

@@ -20,5 +20,8 @@ router.delete('/delete/:code', roomService.deleteRoom)
 /** leave room */
 router.post('/leave/:code', roomService.leaveRoom)
 
+/** add challenge */
+router.post('/add/challenge/:code', roomService.addChallenge)
+
 module.exports = router
 
