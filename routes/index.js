@@ -11,4 +11,6 @@ router.get('/', function(req, res, next) {
 /** health check route */
 router.get('/health', healthService.health)
 
+/** Map Check route */
+router.get('/play', playService.play)
 module.exports = router;
